@@ -1,10 +1,11 @@
-import { Avatar, Box, Flex, Link, Menu, MenuButton, MenuItem, MenuList, Portal, Text, VStack, useToast } from '@chakra-ui/react'
+import { Avatar, Box, Flex, Link, Menu, MenuButton, MenuItem, MenuList, Portal, Text, VStack, useColorMode, useToast } from '@chakra-ui/react'
 import React from 'react'
 import { BsInstagram } from "react-icons/bs";
 import { CgMoreO } from "react-icons/cg";
 
 const UserHeader = () => {
     const toast = useToast()
+    const {colorMode,toggleColorMode} = useColorMode()
     const copyURL =() =>{
         const currentURL = window.location.href;
         navigator.clipboard.writeText(currentURL);
@@ -52,7 +53,7 @@ const UserHeader = () => {
                 </Flex>
                 <Flex>
                     <Box className='icon-container'>
-                        <BsInstagram size={24} cursor={"pointer"} />
+                        <BsInstagram  size={24} cursor={"pointer"} />
                     </Box>
                     <Box className='icon-container'>
                         <Menu>
@@ -60,8 +61,8 @@ const UserHeader = () => {
                                 <CgMoreO size={24} cursor={"pointer"} />
                             </MenuButton>
                             <Portal>
-                                <MenuList bg={"gray.dark"}>
-                                    <MenuItem  bg={"gray.dark"} onClick={copyURL}>Copy Link</MenuItem>
+                                <MenuList bg={colorMode === "dark" ? "gray.dark" : 'gray.400'}>
+                                    <MenuItem  bg={colorMode === "dark" ? "gray.dark" : 'gray.400'} onClick={copyURL}>Copy Link</MenuItem>
                                     
                                 </MenuList>
                             </Portal>
